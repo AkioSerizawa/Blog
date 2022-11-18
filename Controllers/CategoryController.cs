@@ -65,7 +65,7 @@ public class CategoryController : ControllerBase
         {
             var category = new Category
             {
-                //Id = 0,
+                Id = 0,
                 Name = model.Name,
                 Slug = model.Slug.ToLower()
             };
