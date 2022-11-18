@@ -11,7 +11,7 @@ public class UtilMensagens
 
     #region Categoria
 
-    public static string categoria05X03() => $"05X04 - Nenhuma categoria encontrada!";
+    public static string categoria05X03() => $"05X03 - Nenhuma categoria encontrada!";
 
     public static string categoria05X04(int id) =>
         $"05X04 - Nenhuma categoria encontrada! | Categoria pesquisada - '{id}' |";
