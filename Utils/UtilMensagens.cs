@@ -1,6 +1,6 @@
 namespace Blog.Utils;
 
-public class UtilMessagem
+public class UtilMensagens
 {
     public static string categoria05X03() => $"05X04 - Nenhuma categoria encontrada!";
 

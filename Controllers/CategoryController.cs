@@ -19,14 +19,14 @@ public class CategoryController : ControllerBase
         {
             var categories = await context.Categories.ToListAsync();
             if (categories.Count == 0)
-                return NotFound(new ResultViewModel<Category>(UtilMessagem.categoria05X03()));
+                return NotFound(new ResultViewModel<Category>(UtilMensagens.categoria05X03()));
 
             return Ok(new ResultViewModel<List<Category>>(categories));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05X05(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05X05(ex)));
         }
     }
 
@@ -42,14 +42,14 @@ public class CategoryController : ControllerBase
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (category == null)
                 return NotFound(
-                    new ResultViewModel<Category>(UtilMessagem.categoria05X04(id)));
+                    new ResultViewModel<Category>(UtilMensagens.categoria05X04(id)));
 
             return Ok(new ResultViewModel<Category>(category));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05X05(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05X05(ex)));
         }
     }
 
@@ -77,12 +77,12 @@ public class CategoryController : ControllerBase
         catch (DbUpdateException ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05XE09(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05XE09(ex)));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05XE10(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05XE10(ex)));
         }
     }
 
@@ -100,7 +100,7 @@ public class CategoryController : ControllerBase
 
             if (category == null)
                 return NotFound(
-                    new ResultViewModel<Category>(UtilMessagem.categoria05X04(id)));
+                    new ResultViewModel<Category>(UtilMensagens.categoria05X04(id)));
 
             category.Name = model.Name;
             category.Slug = model.Slug;
@@ -113,12 +113,12 @@ public class CategoryController : ControllerBase
         catch (DbUpdateException ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05XE08(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05XE08(ex)));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05XE10(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05XE10(ex)));
         }
     }
 
@@ -135,7 +135,7 @@ public class CategoryController : ControllerBase
 
             if (category == null)
                 return NotFound(
-                    new ResultViewModel<Category>(UtilMessagem.categoria05X04(id)));
+                    new ResultViewModel<Category>(UtilMensagens.categoria05X04(id)));
 
             context.Categories.Remove(category);
             await context.SaveChangesAsync();
@@ -145,12 +145,12 @@ public class CategoryController : ControllerBase
         catch (DbUpdateException ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05XE07(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05XE07(ex)));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>(UtilMessagem.categoria05XE10(ex)));
+                new ResultViewModel<Category>(UtilMensagens.categoria05XE10(ex)));
         }
     }
 }
