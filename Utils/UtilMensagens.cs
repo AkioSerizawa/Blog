@@ -4,7 +4,8 @@ public class UtilMensagens
 {
     #region Primitivos
 
-    public static string primitivos01X01(Exception ex) => $"01X01 - TimeOut | {ex.Message} |";
+    public static string primitivos01X01(Exception ex) =>
+        $"01X01 - TimeOut, Processamento tomou mais tempo do que o permitido | {ex.Message} |";
 
     #endregion
 
