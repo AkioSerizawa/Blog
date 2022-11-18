@@ -11,6 +11,10 @@ public class UtilMensagens
 
     #region Usuario
 
+    public static string usuario04XE07() => $"04XE07 - Senha inválida";
+
+    public static string usuario04XE08() => $"04XE08 - Usuário ou senha inválida";
+
     public static string usuario04XE09(Exception ex) =>
         $"04XE09 - Este E-mail já está cadastrado ou falha ao incluir o usuario  - | {ex.Message} |";
 
