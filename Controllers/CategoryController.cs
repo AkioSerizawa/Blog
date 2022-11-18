@@ -1,6 +1,7 @@
 using Blog.Data;
 using Blog.Extensions;
 using Blog.Models;
+using Blog.Utils;
 using Blog.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,14 +19,14 @@ public class CategoryController : ControllerBase
         {
             var categories = await context.Categories.ToListAsync();
             if (categories.Count == 0)
-                return NotFound(new ResultViewModel<Category>("Nenhuma categoria encontrada!"));
+                return NotFound(new ResultViewModel<Category>(UtilMessagem.categoria05X03()));
 
             return Ok(new ResultViewModel<List<Category>>(categories));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<List<Category>>($"05X04 - Falha interna no servidor - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05X05(ex)));
         }
     }
 
@@ -41,14 +42,14 @@ public class CategoryController : ControllerBase
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (category == null)
                 return NotFound(
-                    new ResultViewModel<Category>($"Nenhuma categoria encontrada! | Categoria pesquisada - '{id}' |"));
+                    new ResultViewModel<Category>(UtilMessagem.categoria05X04(id)));
 
             return Ok(new ResultViewModel<Category>(category));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05X04 - Falha interna no servidor - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05X05(ex)));
         }
     }
 
@@ -64,7 +65,7 @@ public class CategoryController : ControllerBase
         {
             var category = new Category
             {
-                Id = 0,
+                //Id = 0,
                 Name = model.Name,
                 Slug = model.Slug.ToLower()
             };
@@ -76,12 +77,12 @@ public class CategoryController : ControllerBase
         catch (DbUpdateException ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05XE09 - Não foi possível incluir a categoria - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05XE09(ex)));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05XE10 - Falha interna no servidor - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05XE10(ex)));
         }
     }
 
@@ -99,7 +100,7 @@ public class CategoryController : ControllerBase
 
             if (category == null)
                 return NotFound(
-                    new ResultViewModel<Category>($"Nenhuma categoria encontrada! | Categoria pesquisada - '{id}' |"));
+                    new ResultViewModel<Category>(UtilMessagem.categoria05X04(id)));
 
             category.Name = model.Name;
             category.Slug = model.Slug;
@@ -112,12 +113,12 @@ public class CategoryController : ControllerBase
         catch (DbUpdateException ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05XE08 - Falha na atualização da categoria - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05XE08(ex)));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05XE10 - Falha interna no servidor - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05XE10(ex)));
         }
     }
 
@@ -134,7 +135,7 @@ public class CategoryController : ControllerBase
 
             if (category == null)
                 return NotFound(
-                    new ResultViewModel<Category>($"Nenhuma categoria encontrada! | Categoria pesquisada - '{id}' |"));
+                    new ResultViewModel<Category>(UtilMessagem.categoria05X04(id)));
 
             context.Categories.Remove(category);
             await context.SaveChangesAsync();
@@ -144,12 +145,12 @@ public class CategoryController : ControllerBase
         catch (DbUpdateException ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05XE07 - Falha ao deletar a categoria - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05XE07(ex)));
         }
         catch (Exception ex)
         {
             return StatusCode(500,
-                new ResultViewModel<Category>($"05XE10 - Falha interna no servidor - | {ex.Message} |"));
+                new ResultViewModel<Category>(UtilMessagem.categoria05XE10(ex)));
         }
     }
 }
