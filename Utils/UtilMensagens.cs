@@ -9,6 +9,15 @@ public class UtilMensagens
 
     #endregion
 
+    #region Usuario
+
+    public static string usuario04XE09(Exception ex) =>
+        $"04XE09 - Este E-mail já está cadastrado ou falha ao incluir o usuario  - | {ex.Message} |";
+
+    public static string usuario04XE10(Exception ex) => $"04XE10 - Falha interna no servidor - | {ex.Message} |";
+
+    #endregion
+
     #region Categoria
 
     public static string categoria05X03() => $"05X03 - Nenhuma categoria encontrada!";
