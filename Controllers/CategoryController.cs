@@ -23,6 +23,10 @@ public class CategoryController : ControllerBase
 
             return Ok(new ResultViewModel<List<Category>>(categories));
         }
+        catch (TimeoutException ex)
+        {
+            return StatusCode(408, new ResultViewModel<Category>(UtilMensagens.primitivos01X01(ex)));
+        }
         catch (Exception ex)
         {
             return StatusCode(500,
@@ -45,6 +49,10 @@ public class CategoryController : ControllerBase
                     new ResultViewModel<Category>(UtilMensagens.categoria05X04(id)));
 
             return Ok(new ResultViewModel<Category>(category));
+        }
+        catch (TimeoutException ex)
+        {
+            return StatusCode(408, new ResultViewModel<Category>(UtilMensagens.primitivos01X01(ex)));
         }
         catch (Exception ex)
         {
@@ -109,6 +117,10 @@ public class CategoryController : ControllerBase
             await context.SaveChangesAsync();
 
             return Ok(new ResultViewModel<Category>(category));
+        }
+        catch (TimeoutException ex)
+        {
+            return StatusCode(408, new ResultViewModel<Category>(UtilMensagens.primitivos01X01(ex)));
         }
         catch (DbUpdateException ex)
         {
